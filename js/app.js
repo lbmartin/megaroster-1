@@ -16,15 +16,19 @@ const megaroster = {
   },
 
   removeStudent(ev) {
-    let index = this.students.indexOf(ev)
-    //let index = this.getAttribute('data-item-index')
-    //$('.student').attr('data-id')
-    console.log(index)
     const btn = ev.target
+    var a = btn.closest('.student')
+    this.students.splice((this.students.length)-$(a).data('id'), 1)
     btn.closest('.student').remove()
-    this.students.splice(index, 1)
     // Remove it from the this.students array
      //(location at which to remove in array, )
+  },
+
+  growListing(ev) {
+    const growth = ev.target
+    //growth.closest('.student')
+    document.getElementById(ev.target).style.color = "blue";
+
   },
 
   addStudent(ev) {
@@ -53,11 +57,17 @@ const megaroster = {
     this.removeClassName(li, 'template')
     li.querySelector('.student-name').textContent = student.name
     li.dataset.id = student.id
+    li
+      .querySelector('button.grow')
+      .addEventListener('click',this.growListing.bind(this))
+
 
     li
       .querySelector('button.remove')
       .addEventListener('click', this.removeStudent.bind(this))
     return li
+    
+
   },
 
   removeClassName(el, className){
