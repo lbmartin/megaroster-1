@@ -16,11 +16,15 @@ const megaroster = {
   },
 
   removeStudent(ev) {
+    let index = this.students.indexOf(ev)
+    //let index = this.getAttribute('data-item-index')
+    //$('.student').attr('data-id')
+    console.log(index)
     const btn = ev.target
     btn.closest('.student').remove()
-
+    this.students.splice(index, 1)
     // Remove it from the this.students array
-    // this.students.splice(?, 1)
+     //(location at which to remove in array, )
   },
 
   addStudent(ev) {
